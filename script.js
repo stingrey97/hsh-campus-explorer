@@ -12,6 +12,7 @@ class Building {
 // Die einzelnen Gebäude
 let mensa = new Building("Mensa", "Die Mensa von Campus Linden mit dem BESTEN Essen, Preisen und Mitarbeitern", "resource/mensa.png");
 let j = new Building("J-Gebäude", "Hier befinden sich Lehrräume, die FSRe und dei Verwaltung der Hochschule", "resource/j.png");
+let h = new Building("H-Gebäude", "Hier sind die Informatiker und komischen Wirtschaftler", "resource/h.png");
 
 //Event listener für die einzelnen Gebäude auf der Karte
 document.getElementById("mensa").addEventListener("click", function (event) {
@@ -20,7 +21,11 @@ document.getElementById("mensa").addEventListener("click", function (event) {
 
 document.getElementById("j").addEventListener("click", function (event) {
     showBuilding(j);
-})
+});
+
+document.getElementById("h").addEventListener("click", function (event) {
+    showBuilding(h);
+});
 
 function showBuilding(building) {
     window.open("PopUp.html?name=" + encodeURIComponent(building.name) + "&description=" + encodeURIComponent(building.description) + "&picture=" + encodeURIComponent(building.picture));
@@ -75,6 +80,8 @@ async function fetchWeather() {
         todayWeather = data.weather[0];
         maxTemp = todayWeather.maxtempC;
         minTemp = todayWeather.mintempC;
+
+        console.log(temp, windSpeed, maxTemp, minTemp,weather);
 
         showWeather(temp, windSpeed, maxTemp, minTemp, weather);
     } catch (e) {
