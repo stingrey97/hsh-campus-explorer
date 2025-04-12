@@ -81,7 +81,8 @@ async function fetchWeather() {
         maxTemp = todayWeather.maxtempC;
         minTemp = todayWeather.mintempC;
 
-        console.log(temp, windSpeed, maxTemp, minTemp,weather);
+        console.log(temp, windSpeed, maxTemp, minTemp, weather);
+        updateButton(weather);
 
         showWeather(temp, windSpeed, maxTemp, minTemp, weather);
     } catch (e) {
@@ -89,10 +90,44 @@ async function fetchWeather() {
     }
 }
 
+function updateButton(weather) {
+    const icon = document.getElementById("weatherButton");
+
+    switch (weather) {
+        case "Clear":
+        case "Sunny":
+            icon.src = "icons/weather/sunny.png";
+            break;
+        case "Moderate Rain":
+        case "Heavy Rain":
+        case "Light Rain":
+            icon.src = "icons/weather/rainy.png";
+            break;
+        case "Overcast":
+        case "Cloudy":
+        case "Partly Cloudy":
+            icon.src = "icons/weather/cloudy.png";
+            break;
+        case "Moderate Snow":
+        case "Heavy Snow":
+        case "Light Snow":
+            icon.src = "icons/weather/weather-snowy.png";
+            break;
+        case "Thunderstorm":
+            icon.src = "icons/weather/thunderstorm.png";
+            break;
+        case "Windy":
+            icon.src = "icons/weather/wind.png";
+            break;
+        default:
+            icon.src = "icons/weather/cloudy.png";
+    }
+}
+
 function showWeather(temp, windSpeed, maxTemp, minTemp, weather) {
-    document.getElementById("temp").textContent = temp;
-    document.getElementById("windSpeed").textContent = windSpeed;
-    document.getElementById("maxTemp").textContent = maxTemp;
-    document.getElementById("minTemp").textContent = minTemp;
-    document.getElementById("weather").textContent = weather;
+    document.getElementById("temp").textContent = "Aktuelle Temperatur: " + temp;
+    document.getElementById("windSpeed").textContent = "Windgeschwindigkeit: " + windSpeed;
+    document.getElementById("maxTemp").textContent = "Höchsttemperatur: " + maxTemp;
+    document.getElementById("minTemp").textContent = "Minimale Temperatur: " + minTemp;
+    document.getElementById("weather").textContent = "Wetter: " + weather;
 }
