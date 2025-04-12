@@ -1,0 +1,92 @@
+:root {
+    --spacing-top-mobile: 10vh;
+    --spacing-bottom-mobile: 7vh;
+    --spacing-top-desktop: 15vh;
+}
+
+* {
+    font-family: "Segoe UI", sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    /* Colors */
+    background-color: #343E3D;
+    color: #FFFFFF;
+
+    /* Size */
+    width: 100vw;
+    height: var(--spacing-top-mobile);
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+header img {
+    margin-right: 0.7rem;
+}
+
+main {
+    padding-top: var(--spacing-top-mobile);
+    padding-bottom: var(--spacing-bottom-mobile);
+}
+
+.map {
+    aspect-ratio: auto;
+    width: 100%;
+}
+
+nav {
+    /* Colors */
+    background-color: #607466;
+
+    /* Size */
+    width: 100vw;
+    height: var(--spacing-bottom-mobile);
+
+    /* Layout */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+nav a {
+    /* Layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 25%;
+
+    /* Design */
+    text-decoration: none;
+    color: #AEDCC0;
+    border: 1px #AEDCC0 solid;
+}
+
+.text {
+    padding: 0 1rem 0 1rem;
+}
+
+@media (min-width: 960px) {
+    header {
+        height: var(--spacing-top-desktop);
+    }
+
+    main {
+        padding: var(--spacing-top-desktop) 1rem 0 1rem;
+    }
+}

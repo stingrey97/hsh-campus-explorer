@@ -1,34 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Campus Explorer Linden</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon/favicon.svg" type="image/png">
+    <title>Campus Explorer - Linden</title>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-      <h1>CAMPUS EXPLORER "LINDEN"</h1>
-    </header>
+<header>
+    <img src="icon/favicon-white.svg" alt="Logo">
+    <h1>CampusExplorer</h1>
+</header>
 
-    <main>
-      <h3>Entdecke den Campus Linden</h3>
-      <h5>mit einem interaktiven Benutzererlebnis</h5>
-      <p>Mit dieser interaktiven Karte lässt sich der Campus "Linden", Heimat der Fakultäten I, II und IV, erkunden.
-      Entdecke die verschiedenen Gebäude, was sich darin verbirgt und lerne den Campus allgemein besser kennen und finde
-      dich auf dem Campus zurecht. </p>
-      <iframe
-        src="resources/Platzhalter.jpg"
-        title="Map"
-        width="900"
-        height="900">
-      </iframe>
-      <p>1A: Fakultät I und II<br>1B: Fakultät I und II<br>1C: Fakultät I und II<br>1D: Fakultät I und II<br>
-      1E: Fakultät I und II<br>IF: keine Ahnung bruder<br>1G: keine Ahnung bruder 2.0<br>1H: Fakultät IV<br>1I: Mensa<br>
-      1J: Studierendenzentrum<br>1K: Bibliothek</p>
-    </main>
+<main>
+    <section class="text">
+        <h3>Entdecke den Campus Linden</h3>
+        <h5>mit einem interaktiven Benutzererlebnis</h5>
+        <p>
+            Mit dieser interaktiven Karte lässt sich der Campus "Linden", Heimat der Fakultäten I, II und IV, erkunden.
+            Entdecke die verschiedenen Gebäude, was sich darin verbirgt und lerne den Campus allgemein besser kennen und
+            finde
+            dich auf dem Campus zurecht.
+        </p>
+    </section>
 
-    <nav>
+    <img class="map" src="resources/placeholder.jpg" alt="Campuskarte">
 
-    </nav>
+    <section class="text">
+        <p>
+            1A: Fakultät I und II<br>
+            1B: Fakultät I und II<br>
+            1C: Fakultät I und II<br>
+            1D: Fakultät I und II<br>
+            1E: Fakultät I und II<br>
+            IF: keine Ahnung bruder<br>
+            1G: keine Ahnung bruder 2.0<br>
+            1H: Fakultät IV<br>
+            1I: Mensa<br>
+            1J: Studierendenzentrum<br>
+            1K: Bibliothek
+        </p>
+    </section>
+</main>
+
+<nav>
+    <a href="#"><img src="icon/home.svg" alt="Home"></a>
+    <a href="#"><img src="icon/partly-cloudy.svg" alt="Weather"></a>
+    <a href="#"><img src="icon/imprint.svg" alt="Imprint"></a>
+    <a href="resources/never-gonna-give-you-up.mp4"><img src="icon/question-mark.svg" alt="Easter Egg"></a>
+</nav>
 </body>
 </html>
