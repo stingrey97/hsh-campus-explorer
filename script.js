@@ -1,41 +1,40 @@
 /**
- * Funktionen und Klassen um dem Bild von der Karte Funktion zu geben und entsprechende Popups mit den richtigen parametern zu öffnen
+ * Building contains all information needed to display the required pop-up.
+ * It also initializes the EventHandler for clicking buildings
  */
 class Building {
-    constructor(name, description, picture) {
+
+    constructor(id, name, description, picture) {
         this.name = name;
         this.description = description;
         this.picture = picture;
+        const element = document.getElementById(id);
+        if (element) element.addEventListener("click", () => this.show());
+        else console.warn(`Element with ID "${id}" not found!`);
+    }
+
+    show() {
+        const params = new URLSearchParams({
+            name: this.name, description: this.description, picture: this.picture
+        });
+        window.open(`building-description?${params}`)
     }
 }
 
-// Die einzelnen Gebäude
-let mensa = new Building("Mensa", "Die Mensa von Campus Linden mit dem BESTEN Essen, Preisen und Mitarbeitern", "resource/mensa.png");
-let j = new Building("J-Gebäude", "Hier befinden sich Lehrräume, die FSRe und dei Verwaltung der Hochschule", "resource/j.png");
-let h = new Building("H-Gebäude", "Hier sind die Informatiker und komischen Wirtschaftler", "resource/h.png");
+new Building("building-a", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-a.png");
+new Building("building-b", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-b.png");
+new Building("building-c", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-c.png");
+new Building("building-d", "D-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-d.png");
+new Building("building-e", "E-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-e.png");
+new Building("building-f", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-f.png");
+new Building("building-g", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-g.png");
+new Building("building-h", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resource/building-h.png");
+new Building("building-i", "I-Gebäude", "Mensa – Campus Linden", "resource/building-i.png");
+new Building("building-j", "J-Gebäude", "Verwaltung und Lehrräume", "resource/building-j.png");
+new Building("building-k", "K-Gebäude", "Studierendenzentrum", "resource/building-k.png");
 
-//Event listener für die einzelnen Gebäude auf der Karte
-document.getElementById("mensa").addEventListener("click", function (event) {
-    showBuilding(mensa);
-});
 
-document.getElementById("j").addEventListener("click", function (event) {
-    showBuilding(j);
-});
-
-document.getElementById("h").addEventListener("click", function (event) {
-    showBuilding(h);
-});
-
-function showBuilding(building) {
-    window.open("PopUp.html?name=" + encodeURIComponent(building.name) + "&description=" + encodeURIComponent(building.description) + "&picture=" + encodeURIComponent(building.picture));
-}
-
-if (window.location.pathname.includes("PopUp.html")) {
-    getURIParams();
-}
-
-function getURIParams() {
+if (window.location.pathname.includes("buildings-description.html")) {
     const uriParams = new URLSearchParams(window.location.search);
     let name = uriParams.get("name");
     let description = uriParams.get("description");
