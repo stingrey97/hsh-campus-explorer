@@ -95,31 +95,32 @@ function updateButton(weather) {
     switch (weather) {
         case "Clear":
         case "Sunny":
-            icon.src = "icons/weather/sunny.png";
+            icon.src = "icons/weather/sunny.svg";
             break;
         case "Moderate Rain":
         case "Heavy Rain":
+        case "Rain shower":
         case "Light Rain":
-            icon.src = "icons/weather/rainy.png";
+            icon.src = "icons/weather/rainy.svg";
             break;
         case "Overcast":
         case "Cloudy":
         case "Partly Cloudy":
-            icon.src = "icons/weather/cloudy.png";
+            icon.src = "icons/weather/cloudy.svg";
             break;
         case "Moderate Snow":
         case "Heavy Snow":
         case "Light Snow":
-            icon.src = "icons/weather/weather-snowy.png";
+            icon.src = "icons/weather/weather-snowy.svg";
             break;
         case "Thunderstorm":
-            icon.src = "icons/weather/thunderstorm.png";
+            icon.src = "icons/weather/thunderstorm.svg";
             break;
         case "Windy":
-            icon.src = "icons/weather/wind.png";
+            icon.src = "icons/weather/wind.svg";
             break;
         default:
-            icon.src = "icons/weather/cloudy.png";
+            icon.src = "icons/weather/cloudy.svg";
     }
 }
 
