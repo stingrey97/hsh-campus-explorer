@@ -21,26 +21,28 @@ class Building {
     }
 }
 
-new Building("building-a", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-a.png");
-new Building("building-b", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-b.png");
-new Building("building-c", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-c.png");
-new Building("building-d", "D-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-d.png");
-new Building("building-e", "E-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-e.png");
-new Building("building-f", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-f.png");
-new Building("building-g", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-g.png");
-new Building("building-h", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resource/building-h.png");
-new Building("building-i", "I-Gebäude", "Mensa – Campus Linden", "resource/building-i.png");
-new Building("building-j", "J-Gebäude", "Verwaltung und Lehrräume", "resource/building-j.png");
-new Building("building-k", "K-Gebäude", "Studierendenzentrum", "resource/building-k.png");
+new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-a.png");
+new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-b.png");
+new Building("1C", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-c.png");
+new Building("1D", "D-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-d.png");
+new Building("1E", "E-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-e.png");
+new Building("1F", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-f.png");
+new Building("1G", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-g.png");
+new Building("1H", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resource/building-h.png");
+new Building("1I", "I-Gebäude", "Mensa – Campus Linden", "resource/building-i.png");
+new Building("1J", "J-Gebäude", "Verwaltung und Lehrräume", "resource/building-j.png");
+new Building("1K", "K-Gebäude", "Studierendenzentrum", "resource/building-k.png");
 
-
+/**
+ * Display pop up only on buildings-description.html
+ */
 if (window.location.pathname.includes("buildings-description.html")) {
     const uriParams = new URLSearchParams(window.location.search);
     let name = uriParams.get("name");
     let description = uriParams.get("description");
     let picture = uriParams.get("picture");
 
-    if (name && description && picture) {
+    if (name && description) {
         document.getElementById("buildingName").textContent = name;
         document.getElementById("buildingDescription").textContent = description;
         document.getElementById("buildingPicture").src = picture;
@@ -51,10 +53,9 @@ if (window.location.pathname.includes("buildings-description.html")) {
 }
 
 /**
- * Ajax Teil um entsprechend das Wetter einzubinden
+ * ajax Weather API call (wttr.in)
  */
-
-fetchWeather() // Einmal zu Beginn
+void fetchWeather(); // Update weather icon on loading the page
 setInterval(fetchWeather, 60 * 1000 * 15);
 
 async function fetchWeather() {
@@ -69,57 +70,54 @@ async function fetchWeather() {
         let response = await fetch('https://wttr.in/Hannover?format=j1');
         let data = await response.json();
 
-        // Aktuelle Daten
+
         current = data.current_condition[0];
         temp = current.temp_C;
         windSpeed = current.windspeedKmph;
         weather = current.weatherDesc[0].value;
 
-        // Tages Daten
         todayWeather = data.weather[0];
         maxTemp = todayWeather.maxtempC;
         minTemp = todayWeather.mintempC;
 
-        console.log(temp, windSpeed, maxTemp, minTemp, weather);
         updateButton(weather);
-
         showWeather(temp, windSpeed, maxTemp, minTemp, weather);
     } catch (e) {
-        console.error('Fehler bei der GET-Anfrage:', e);
+        console.error('Error calling "wttr.in" API:', e);
     }
 }
 
 function updateButton(weather) {
-    const icon = document.getElementById("weatherButton");
+    const icon = document.getElementById(`weatherButton`);
 
     switch (weather) {
         case "Clear":
         case "Sunny":
-            icon.src = "icons/weather/sunny.png";
+            icon.src = "resources/icons/weather/sunny.png";
             break;
         case "Moderate Rain":
         case "Heavy Rain":
         case "Light Rain":
-            icon.src = "icons/weather/rainy.png";
+            icon.src = "resources/icons/weather/rainy.png";
             break;
         case "Overcast":
         case "Cloudy":
         case "Partly Cloudy":
-            icon.src = "icons/weather/cloudy.png";
+            icon.src = "resources/icons/weather/cloudy.png";
             break;
         case "Moderate Snow":
         case "Heavy Snow":
         case "Light Snow":
-            icon.src = "icons/weather/weather-snowy.png";
+            icon.src = "resources/icons/weather/weather-snowy.png";
             break;
         case "Thunderstorm":
-            icon.src = "icons/weather/thunderstorm.png";
+            icon.src = "resources/icons/weather/thunderstorm.png";
             break;
         case "Windy":
-            icon.src = "icons/weather/wind.png";
+            icon.src = "resources/icons/weather/wind.png";
             break;
         default:
-            icon.src = "icons/weather/cloudy.png";
+            icon.src = "resources/icons/weather/cloudy.png";
     }
 }
 
