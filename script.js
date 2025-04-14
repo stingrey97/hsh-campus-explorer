@@ -9,17 +9,37 @@ class Building {
         this.description = description;
         this.picture = picture;
         const element = document.getElementById(id);
-        if (element) element.addEventListener("click", () => this.show());
+        if (element) element.addEventListener("click", (event) => {
+            this.show(event)
+            event.stopPropagation();
+        });
         else console.warn(`Element with ID "${id}" not found!`);
     }
 
-    show() {
-        const params = new URLSearchParams({
-            name: this.name, description: this.description, picture: this.picture
-        });
-        window.open(`building-description?${params}`)
+    show(event) {
+        //
+        const popup = document.getElementById("popUP");
+
+        document.getElementById("nameDesGebäudes").textContent = this.name;
+        document.getElementById("beschreibungDesGebäudes").textContent = this.description;
+        document.getElementById("pictureDesGebäudes").src = this.picture;
+
+        popup.style.top = event.pageY + "px";
+        popup.style.left = event.pageX + "px";
+
+        popup.style.display = "block";
     }
 }
+
+document.addEventListener("click", (event) => {
+    const popup = document.getElementById("popUP");
+    // Prüfe, ob der Klick NICHT im Popup und NICHT auf dem Button stattgefunden hat
+    if (popup.style.display === "block" &&
+        !popup.contains(event.target) &&
+        event.target.id !== "popupButton") {
+        popup.style.display = "none";
+    }
+});
 
 new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-a.png");
 new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-b.png");
@@ -33,24 +53,6 @@ new Building("1I", "I-Gebäude", "Mensa – Campus Linden", "resource/building-i
 new Building("1J", "J-Gebäude", "Verwaltung und Lehrräume", "resource/building-j.png");
 new Building("1K", "K-Gebäude", "Studierendenzentrum", "resource/building-k.png");
 
-/**
- * Display pop up only on buildings-description.html
- */
-if (window.location.pathname.includes("buildings-description.html")) {
-    const uriParams = new URLSearchParams(window.location.search);
-    let name = uriParams.get("name");
-    let description = uriParams.get("description");
-    let picture = uriParams.get("picture");
-
-    if (name && description) {
-        document.getElementById("buildingName").textContent = name;
-        document.getElementById("buildingDescription").textContent = description;
-        document.getElementById("buildingPicture").src = picture;
-    } else {
-        document.getElementById("buildingName").textContent = "Kein Gebäude ausgewählt";
-        document.getElementById("buildingDescription").textContent = "Keine Beschreibung verfügbar.";
-    }
-}
 
 /**
  * ajax Weather API call (wttr.in)
@@ -80,16 +82,19 @@ async function fetchWeather() {
         maxTemp = todayWeather.maxtempC;
         minTemp = todayWeather.mintempC;
 
-        updateButton(weather);
-        showWeather(temp, windSpeed, maxTemp, minTemp, weather);
+        updateButton(weather, temp);
+        if(window.location.pathname.includes("weather")){
+            showWeather(temp, windSpeed, maxTemp, minTemp, weather);
+        }
     } catch (e) {
         console.error('Error calling "wttr.in" API:', e);
     }
 }
 
-function updateButton(weather) {
-    const icon = document.getElementById(`weatherButton`);
-
+function updateButton(weather, temp) {
+    const icon = document.querySelector("#weatherButton img");
+    const text = document.querySelector("#weatherButton span");
+    text.textContent = temp+"°C";
     switch (weather) {
         case "Clear":
         case "Sunny":

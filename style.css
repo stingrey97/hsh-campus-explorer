@@ -149,3 +149,21 @@ nav a {
         border-bottom: 1px #AEDCC0 solid;
     }
 }
+/* CSS für das Test Popup */
+.popup{
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 1000;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.popup img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
