@@ -24,10 +24,24 @@ class Building {
         document.getElementById("beschreibungDesGebäudes").textContent = this.description;
         document.getElementById("pictureDesGebäudes").src = this.picture;
 
-        popup.style.top = event.pageY + "px";
-        popup.style.left = event.pageX + "px";
-
         popup.style.display = "block";
+
+        const popupWidth = popup.offsetWidth;
+
+        const cursorX = event.pageX;
+
+        let left;
+        let top = event.pageY;
+
+        // Wenn rechts nicht genug Platz ist, popup links vom Cursor anzeigen
+        if (cursorX + popupWidth > window.innerWidth) {
+            left = cursorX - popupWidth;
+        } else {
+            left = cursorX;
+        }
+
+        popup.style.left = left + 'px';
+        popup.style.top = top + 'px';
     }
 }
 
@@ -41,17 +55,17 @@ document.addEventListener("click", (event) => {
     }
 });
 
-new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-a.png");
-new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-b.png");
-new Building("1C", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resource/buildings/building-c.png");
-new Building("1D", "D-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-d.png");
-new Building("1E", "E-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-e.png");
-new Building("1F", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-f.png");
-new Building("1G", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resource/buildings/building-g.png");
-new Building("1H", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resource/building-h.png");
-new Building("1I", "I-Gebäude", "Mensa – Campus Linden", "resource/building-i.png");
-new Building("1J", "J-Gebäude", "Verwaltung und Lehrräume", "resource/building-j.png");
-new Building("1K", "K-Gebäude", "Studierendenzentrum", "resource/building-k.png");
+new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-a.jpg");
+new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-b.jpg");
+new Building("1C", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-c.jpg");
+new Building("1D", "D-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-d.jpg");
+new Building("1E", "E-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-e.jpg");
+new Building("1F", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-f.jpg");
+new Building("1G", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-g.jpg");
+new Building("1H", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resources/buildings/building-h.jpg");
+new Building("1I", "I-Gebäude", "Mensa – Campus Linden", "resources/buildings/building-i.jpg");
+new Building("1J", "J-Gebäude", "Verwaltung und Lehrräume", "resources/buildings/building-j.jpg");
+new Building("1K", "K-Gebäude", "Studierendenzentrum", "resources/buildings/building-k.jpg");
 
 
 /**
