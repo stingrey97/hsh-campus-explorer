@@ -126,7 +126,6 @@ function updateButton(weather, temp) {
             break;
         case "Overcast":
         case "Cloudy":
-        case "Partly Cloudy":
             icon.src = "resources/icons/weather/cloudy.svg";
             break;
         case "Moderate Snow":
@@ -141,7 +140,7 @@ function updateButton(weather, temp) {
             icon.src = "resources/icons/weather/wind.svg";
             break;
         default:
-            icon.src = "resources/icons/weather/cloudy.svg";
+            icon.src = "resources/icons/weather/partly-cloudy.svg";
     }
 }
 
