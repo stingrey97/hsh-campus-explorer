@@ -68,6 +68,7 @@ async function fetchWeather() {
     let minTemp;
     let current;
     let todayWeather;
+    let deutschWetter;
     try {
         let response = await fetch('https://wttr.in/Hannover?format=j1');
         let data = await response.json();
@@ -77,14 +78,17 @@ async function fetchWeather() {
         temp = current.temp_C;
         windSpeed = current.windspeedKmph;
         weather = current.weatherDesc[0].value;
+        // deutschWetter = current.lang_de[0].value; alternativ wenn der Webserver nicht funktioniert
+
+
 
         todayWeather = data.weather[0];
         maxTemp = todayWeather.maxtempC;
         minTemp = todayWeather.mintempC;
 
         updateButton(weather, temp);
-        if(window.location.pathname.includes("weather")){
-            showWeather(temp, windSpeed, maxTemp, minTemp, weather);
+        if (window.location.pathname.includes("weather")) {
+            showWeather(temp, windSpeed, maxTemp, minTemp, weather,deutschWetter);
         }
     } catch (e) {
         console.error('Error calling "wttr.in" API:', e);
@@ -94,7 +98,7 @@ async function fetchWeather() {
 function updateButton(weather, temp) {
     const icon = document.querySelector("#weatherButton img");
     const text = document.querySelector("#weatherButton span");
-    text.textContent = temp+"°C";
+    text.textContent = temp + "°C";
     switch (weather) {
         case "Clear":
         case "Sunny":
@@ -127,10 +131,38 @@ function updateButton(weather, temp) {
     }
 }
 
-function showWeather(temp, windSpeed, maxTemp, minTemp, weather) {
+async function showWeather(temp, windSpeed, maxTemp, minTemp, weather,deutschWetter) {
+    weather = await translate(weather);
     document.getElementById("temp").textContent = "Aktuelle Temperatur: " + temp;
     document.getElementById("windSpeed").textContent = "Windgeschwindigkeit: " + windSpeed;
     document.getElementById("maxTemp").textContent = "Höchsttemperatur: " + maxTemp;
     document.getElementById("minTemp").textContent = "Minimale Temperatur: " + minTemp;
     document.getElementById("weather").textContent = "Wetter: " + weather;
+    // document.getElementById("weather").textContent = "Wetter: " + deutschWetter;
+}
+
+async function translate(weather) {
+    console.log(weather);
+    let antwort = "Übersetzung gescheitert";
+    try {
+        let response = await fetch("http://terzenbach.com:5000/translate", {
+            method: "POST",
+            body: JSON.stringify({
+                q:  weather.toLowerCase(),
+                source: "en",
+                target: "de",
+                api_key:"meingeheimerkey123"
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        let data = await response.json();
+        antwort = data.translatedText;
+        console.log(data);
+        console.log(data.translatedText);
+    } catch (e) {
+        console.error('Error calling "translate.com" API:', e);
+    }
+    return antwort;
 }
