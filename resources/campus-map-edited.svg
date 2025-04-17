@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="2000" height="2000">
+    <title>CampusMap</title>
+    <style>
+        .s0 { fill: #247ba0 }
+        .s1 { fill: #3b6468 }
+        .t2 { font-size: 53px;fill: #e8f1f2;font-weight: 400;font-family: "Arial"}
+        .t3 { font-size: 74px;fill: #e8f1f2;font-weight: 400;font-family: "Arial"}
+        .t4 { font-size: 30px;fill: #e8f1f2;font-weight: 700;font-family: "Arial"}
+        .t5 { font-size: 30px;fill: #e8f1f2;font-weight: 400;font-family: "Arial"}
+        .s6 { fill: #13293d }
+        .s7 { fill: #e8f1f2 }
+    </style>
+
+    <defs>
+        <path id="triangle-up" d="M0 -10 l16.9 19 h-33.7 z" class="s7"/>
+        <g id="triangle-left" transform="rotate(-90)"><use href="#triangle-up"/></g>
+        <g id="triangle-right" transform="rotate(90)"><use href="#triangle-up"/></g>
+        <g id="triangle-down" transform="rotate(180)"><use href="#triangle-up"/></g>
+
+        <g id="buildings">
+            <path id="1K" d="m1164 1516v191h-233v-191z"/>
+            <path id="1J" d="m1737 1514v324h-357v-324z"/>
+            <path id="1I" d="m1737 1176v205h-418v-205zm0-29v87h-184v-87zm0-33v62h-61v-62z"/>
+            <path id="1H" d="m1303 776v106h-62v-106zm-133 30v45h-39v-45zm127.5 76c-32.9 0-59.5-23.7-59.5-53 0-29.3 26.6-53 59.5-53 32.9 0 59.5 23.7 59.5 53 0 29.3-26.6 53-59.5 53zm245.5-246v385h-53v-385zm25 46v295h-31v-295zm-74 248v91h-329v-91zm-253-205v210h-76v-210zm253-88v91h-329v-91z"/>
+            <path id="1G" d="m1481 377v97h-315v-97z"/>
+            <path id="1F" d="m1164 133v180h-180v-180z"/>
+            <path id="1E" d="m1139 1277v59h-375v-59zm80 25v88h-301v-88zm-80-67v67h-68v-67zm-436-870v971h-87v-971zm-62 486v102h-42v-102zm0 221v102h-42v-102zm0 208v56h-42v-56zm0-603v56h-42v-56zm161-312v55h-186v-55zm0 107v735h-101v-735zm-36 734v130h-71v-130z"/>
+            <path id="1D" d="m672 133v212h-95v-212z"/>
+            <path id="1C" d="m605 408v144h-260v-144zm-248 0v60h-74v-60z"/>
+            <path id="1B" d="m587.9 851v102h-100v-102zm0 221v102h-100v-102zm0 208v56h-100v-56zm0-603v56h-100v-56zm-78 0v659h-81v-659zm-79-53v116h-302v-116zm11 289v111h-309v-111zm11 303v120h-316v-120z"/>
+            <path id="1A" d="m697 1350v236h-262v-236zm73 178v423h-138v-423zm-201 3v93h-182v-93z"/>
+        </g>
+    </defs>
+
+    <rect id="Background" class="s0" x="0" y="0" width="2000" height="2000"/>
+
+    <g id="texts">
+        <text id="text-1K" style="transform: matrix(1,0,0,1,916,1796)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">K</tspan>
+        </text>
+        <text id="text-1J" style="transform: matrix(1,0,0,1,1384,1943)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">J</tspan>
+        </text>
+        <text id="text-1I" style="transform: matrix(1,0,0,1,1313,1128)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">I</tspan>
+        </text>
+        <text id="text-1H" style="transform: matrix(1,0,0,1,1610,859)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">H</tspan>
+        </text>
+        <text id="text-1G" style="transform: matrix(1,0,0,1,1398,346)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">G</tspan>
+        </text>
+        <text id="text-1F" style="transform: matrix(1,0,0,1,1179,189)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">F</tspan>
+        </text>
+        <text id="text-1E" style="transform: matrix(1,0,0,1,835,1176)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">E</tspan>
+        </text>
+        <text id="text-1D" style="transform: matrix(1,0,0,1,460,199)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">D</tspan>
+        </text>
+        <text id="text-1C" style="transform: matrix(1,0,0,1,172,470)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">C</tspan>
+        </text>
+        <text id="text-1B" style="transform: matrix(1,0,0,1,131,1181)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">B</tspan>
+        </text>
+        <text id="text-1A" style="transform: matrix(1,0,0,1,386,1705)">
+            <tspan x="0" y="0" class="t2">1</tspan>
+            <tspan y="0" class="t3">A</tspan>
+        </text>
+        <text id="parking-zone-east" style="transform: matrix(1,0,0,1,1568,398)">
+            <tspan x="0" y="0"  class="t4">Parkplatz</tspan>
+            <tspan x="0" y="36" class="t5">Parking Zone</tspan>
+        </text>
+        <text id="parking-zone-center" style="transform: matrix(1,0,0,1,861,837)">
+            <tspan x="0" y="0"  class="t4">Parkplatz</tspan>
+            <tspan x="0" y="36" class="t5">Parking Zone</tspan>
+        </text>
+    </g>
+
+    <use href="#buildings" class="s1" transform="translate(7, 8)"/>
+    <use href="#buildings" class="s6"/>
+
+    <g id="path">
+        <path id="path-main"     class="s7" d="m1096 383v715h-7v-715zm165 708v347h-7v-347zm66 342v519h-7v-519zm-460-1043v-316h7v316zm-343-316v51h-7v-51zm573 316h-230v-7h230zm-7 701h171v7h-171zm-296.6 345.5l-39.6 39.6-4.9-4.9 39.6-39.6zm-39.6-40l39.6 39.6-5 5-39.6-39.6zm983.2 43.4h-947v-7h947zm-863-1359h-357v-7h357zm866 488h-650v-7h650z"/>
+        <path id="path-1A-east"  class="s7" d="m133 1544h208v7h-208z"/>
+        <path id="path-1A-south" class="s7" d="m516 1662v291h-7v-291z"/>
+        <path id="path-1C"       class="s7" d="m473 598v35.9h-7v-35.9z"/>
+        <path id="path-1D"       class="s7" d="m526 218v55h-7v-55z"/>
+    </g>
+
+    <g id="entrances" class="s7">
+        <use href="#triangle-up" x="513" y="1643"/>
+        <use href="#triangle-up" x="726" y="1358"/>
+        <use href="#triangle-up" x="1361" y="1410"/>
+        <use href="#triangle-up" x="1225" y="1048"/>
+        <use href="#triangle-up" x="1284" y="503"/>
+        <use href="#triangle-up" x="1081" y="343"/>
+        <use href="#triangle-up" x="470"  y="581"/>
+        <use href="#triangle-up" x="1515" y="1410"/>
+
+        <use href="#triangle-down" x="726"  y="1507"/>
+        <use href="#triangle-down" x="942"  y="1497"/>
+        <use href="#triangle-down" x="1030" y="1250"/>
+        <use href="#triangle-down" x="1439" y="1160"/>
+        <use href="#triangle-down" x="1223" y="620"/>
+        <use href="#triangle-down" x="471"  y="651"/>
+
+        <use href="#triangle-right" x="360"  y="1547"/>
+        <use href="#triangle-right" x="1364" y="1565"/>
+        <use href="#triangle-right" x="1295" y="1227"/>
+        <use href="#triangle-right" x="1139" y="892"/>
+        <use href="#triangle-right" x="1139" y="781"/>
+        <use href="#triangle-right" x="551"  y="258"/>
+        <use href="#triangle-right" x="1364" y="1692"/>
+
+        <use href="#triangle-left"  x="791"  y="1621"/>
+        <use href="#triangle-left"  x="1167" y="1267"/>
+        <use href="#triangle-left"  x="1595" y="966"/>
+        <use href="#triangle-left"  x="1595" y="700"/>
+        <use href="#triangle-left"  x="1505" y="448"/>
+        <use href="#triangle-left"  x="727"  y="448"/>
+        <use href="#triangle-left"  x="788"  y="1250"/>
+    </g>
+</svg>

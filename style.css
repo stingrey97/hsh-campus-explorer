@@ -1,7 +1,17 @@
 :root {
+    /* Layout */
     --spacing-top-mobile: 10vh;
     --spacing-bottom-mobile: 7vh;
     --spacing-top-desktop: 12vh;
+
+    /* Colors */
+    --white: #FFFFFF;
+    --light: #E8F1F2;
+    --lighter: #1b98e0;
+    --normal: #247ba0;
+    --darker: #006494;
+    --dark: #13293d;
+
 }
 
 * {
@@ -16,10 +26,10 @@ html, body {
 
 header {
     /* Colors */
-    background-color: #343E3D;
-    color: #FFFFFF;
+    background-color: var(--dark);
+    color: var(--white);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
+    z-index: 9000;
     /* Size */
     width: 100vw;
     height: var(--spacing-top-mobile);
@@ -43,15 +53,14 @@ main {
 }
 
 .map {
-    aspect-ratio: auto;
     width: 100%;
+    height: auto;
 }
 
 nav {
     /* Colors */
-    background-color: #607466;
+    background-color: var(--darker);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
-
 
     /* Size */
     width: 100vw;
@@ -61,6 +70,7 @@ nav {
     display: flex;
     align-items: center;
     position: fixed;
+    z-index: 9999;
     bottom: 0;
     left: 0;
 }
@@ -76,11 +86,11 @@ nav a {
 
     /* Design */
     text-decoration: none;
-    color: #AEDCC0;
+    color: var(--white);
 }
 
 .border {
-    border-right: 1px #AEDCC0 solid;
+    border-right: 1px var(--white) solid;
 }
 
 .nav-legend {
@@ -95,6 +105,26 @@ nav a {
     padding: 0 1rem 0 1rem;
 }
 
+/* Popup for buildings */
+#popup{
+    position: absolute;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    display: none;
+    left: 2.5vw;
+    width: 95vw;
+    border-radius: 8px;
+}
+
+#popup img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+/* Desktop Layout (>960 px) */
 @media (min-width: 960px) {
     header {
         height: var(--spacing-top-desktop);
@@ -148,22 +178,4 @@ nav a {
         border-right: none;
         border-bottom: 1px #AEDCC0 solid;
     }
-}
-/* CSS für das Test Popup */
-.popup{
-    position: absolute;
-    background-color: white;
-    border: 1px solid gray;
-    padding: 15px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    display: none;
-    z-index: 1000;
-    max-width: 300px;
-    border-radius: 8px;
-}
-
-.popup img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
 }

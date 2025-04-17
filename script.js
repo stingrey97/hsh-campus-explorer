@@ -1,6 +1,6 @@
 /**
- * Building enthält alle Informationen, die zum Anzeigen des Pop-ups benötigt werden.
- * Es initialisiert auch den EventHandler für das Klicken auf Gebäude.
+ * Building contains all information needed to display the required pop-up.
+ * It also initializes the EventHandler for clicking buildings
  */
 class Building {
 
@@ -16,10 +16,9 @@ class Building {
         this.description = description;
         this.picture = picture;
         const element = document.getElementById(id);
-        // Falls das Element gefunden wurde, füge einen Klick-Eventlistener hinzu
         if (element) element.addEventListener("click", (event) => {
-            this.show(event); // Zeige das Pop-up bei Klick
-            event.stopPropagation(); // Verhindere, dass das Event weiter nach oben wandert
+            this.show(event)
+            event.stopPropagation();
         });
         else console.warn(`Element with ID "${id}" not found!`);
     }
@@ -30,47 +29,38 @@ class Building {
      * @param {MouseEvent} event - Das Klick-Event, welches die Position des Cursors liefert.
      */
     show(event) {
-        // Hole das Pop-up-Element
-        const popup = document.getElementById("popUP");
+        const popup = document.getElementById("popup");
 
-        // Setze die Inhalte des Pop-ups (Name, Beschreibung und Bild)
         document.getElementById("nameDesGebäudes").textContent = this.name;
         document.getElementById("beschreibungDesGebäudes").textContent = this.description;
         document.getElementById("pictureDesGebäudes").src = this.picture;
 
-        // Mache das Pop-up sichtbar
-        popup.style.display = "block";
+        /* Location of popup */
+        popup.style.top = event.pageY + 10 + "px";
 
-        const popupWidth = popup.offsetWidth;
-        const cursorX = event.pageX;
-        let left;
-        let top = event.pageY;
-
-        // Falls rechts nicht genug Platz ist, zeige das Pop-up links vom Cursor an
-        if (cursorX + popupWidth > window.innerWidth) {
-            left = cursorX - popupWidth;
-        } else {
-            left = cursorX;
+        /* Mobile view? */
+        const isMobile = window.matchMedia("(max-width: 960px)").matches;
+        /* Position of popup near click */
+        if (!isMobile) {
+            popup.style.left = event.pageX + "px";
         }
 
-        // Setze die Position des Pop-ups
-        popup.style.left = left + 'px';
-        popup.style.top = top + 'px';
+        /* Show popup */
+        popup.style.display = "block";
     }
 }
 
-// Eventlistener, um das Pop-up zu schließen, wenn außerhalb geklickt wird
 document.addEventListener("click", (event) => {
-    const popup = document.getElementById("popUP");
-    // Überprüfe, ob das Pop-up sichtbar ist und der Klick weder im Pop-up noch auf dem Button erfolgte
+    const popup = document.getElementById("popup");
+    // Prüfe, ob der Klick NICHT im Popup und NICHT auf dem Button stattgefunden hat
     if (popup.style.display === "block" &&
         !popup.contains(event.target) &&
         event.target.id !== "popupButton") {
-        popup.style.display = "none"; // Blende das Pop-up aus
+        popup.style.display = "none";
     }
 });
 
-// Initialisierung der Building-Instanzen mit den entsprechenden Parametern
+// TODO: Fix this
 new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-a.jpg");
 new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-b.jpg");
 new Building("1C", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-c.jpg");
@@ -85,11 +75,10 @@ new Building("1K", "K-Gebäude", "Studierendenzentrum", "resources/buildings/bui
 
 
 /**
- * ajax Weather API Aufruf (wttr.in)
- * Ruft die Wetterdaten für Hannover ab und aktualisiert das Wetter-Icon und ggf. weitere Elemente.
+ * AJAX Weather API (wttr.in)
  */
-void fetchWeather(); // Initialer Aufruf zum Aktualisieren des Wetter-Icons beim Laden der Seite
-setInterval(fetchWeather, 60 * 1000 * 15); // Wiederhole den Aufruf alle 15 Minuten
+void fetchWeather(); // Update weather icon on loading the page
+setInterval(fetchWeather, 60 * 1000 * 15);
 
 /**
  * Holt die aktuellen Wetterdaten von der API wttr.in und aktualisiert die Benutzeroberfläche.
@@ -104,25 +93,21 @@ async function fetchWeather() {
     let todayWeather;
     let deutschWetter;
     try {
-        // Sende einen Fetch-Request an die API von wttr.in für Hannover
         let response = await fetch('https://wttr.in/Hannover?format=j1');
         let data = await response.json();
 
-        // Extrahiere die aktuellen Wetterbedingungen
+
         current = data.current_condition[0];
         temp = current.temp_C;
         windSpeed = current.windspeedKmph;
         weather = current.weatherDesc[0].value;
-        // deutschWetter = current.lang_de[0].value; alternativ, falls der Webserver nicht funktioniert
+        // deutschWetter = current.lang_de[0].value; alternativ wenn der Webserver nicht funktioniert
 
-        // Extrahiere die Wetterdaten für heute
         todayWeather = data.weather[0];
         maxTemp = todayWeather.maxtempC;
         minTemp = todayWeather.mintempC;
 
-        // Aktualisiere den Button mit Wetter-Icon und Temperatur
-        updateButton(weather, temp);
-        // Falls die aktuelle Seite "weather" im Pfad enthält, zeige detaillierte Wetterinformationen an
+        updateWeatherIcon(weather, temp);
         if (window.location.pathname.includes("weather")) {
             showWeather(temp, windSpeed, maxTemp, minTemp, weather, deutschWetter);
         }
@@ -136,11 +121,10 @@ async function fetchWeather() {
  * @param {string} weather - Die Wetterbeschreibung (z.B. "Clear", "Rain").
  * @param {string} temp - Die aktuelle Temperatur.
  */
-function updateButton(weather, temp) {
+function updateWeatherIcon(weather, temp) {
     const icon = document.querySelector("#weatherButton img");
     const text = document.querySelector("#weatherButton span");
     text.textContent = temp + "°C";
-    // Wähle das richtige Icon basierend auf der Wetterbeschreibung
     switch (weather) {
         case "Clear":
         case "Sunny":
@@ -185,13 +169,11 @@ function updateButton(weather, temp) {
 async function showWeather(temp, windSpeed, maxTemp, minTemp, weather, deutschWetter) {
     // Übersetze die Wetterbeschreibung ins Deutsche
     weather = await translate(weather);
-    // Aktualisiere die HTML-Elemente mit den Wetterdaten
     document.getElementById("temp").textContent = "Aktuelle Temperatur: " + temp;
     document.getElementById("windSpeed").textContent = "Windgeschwindigkeit: " + windSpeed;
     document.getElementById("maxTemp").textContent = "Höchsttemperatur: " + maxTemp;
     document.getElementById("minTemp").textContent = "Minimale Temperatur: " + minTemp;
     document.getElementById("weather").textContent = "Wetter: " + weather;
-    // document.getElementById("weather").textContent = "Wetter: " + deutschWetter;
 }
 
 /**
@@ -211,7 +193,7 @@ async function translate(weather) {
                 q:  weather.toLowerCase(),
                 source: "en",
                 target: "de",
-                api_key:"meingeheimerkey123"
+                api_key:"meingeheimerkey123" /* Bad practise but for this purpose once okay :) */
             }),
             headers: {
                 "Content-Type": "application/json"

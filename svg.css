@@ -1,0 +1,47 @@
+.s0 {
+    fill: #247ba0
+}
+
+.s1 {
+    fill: #3b6468
+}
+
+.t2 {
+    font-size: 53px;
+    fill: #e8f1f2;
+    font-weight: 400;
+    font-family: "Arial", serif
+}
+
+.t3 {
+    font-size: 74px;
+    fill: #FFFFFF;
+    font-weight: 400;
+    font-family: "Arial", serif
+}
+
+.t4 {
+    font-size: 30px;
+    fill: #FFFFFF;
+    font-weight: 700;
+    font-family: "Arial", serif
+}
+
+.t5 {
+    font-size: 30px;
+    fill: #FFFFFF;
+    font-weight: 400;
+    font-family: "Arial", serif
+}
+
+.s6 {
+    fill: #13293d;
+}
+
+.s6:hover {
+    fill: #30689c;
+}
+
+.s7 {
+    fill: #FFFFFF;
+}
