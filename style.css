@@ -3,6 +3,7 @@
     --spacing-top-mobile: 10vh;
     --spacing-bottom-mobile: 7vh;
     --spacing-top-desktop: 12vh;
+    --spacing-bottom-desktop: 8vh;
 
     /* Colors */
     --white: #FFFFFF;
@@ -11,7 +12,6 @@
     --normal: #247ba0;
     --darker: #006494;
     --dark: #13293d;
-
 }
 
 * {
@@ -19,9 +19,26 @@
     box-sizing: border-box;
 }
 
+a {
+    color: var(--darker);
+}
+
 html, body {
     margin: 0;
     padding: 0;
+}
+
+.white-link {
+    text-decoration: none;
+    color: var(--white);
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+}
+
+h5 {
+    margin-top: 0.5rem;
 }
 
 header {
@@ -35,12 +52,17 @@ header {
     height: var(--spacing-top-mobile);
 
     /* Layout */
-    display: flex;
-    align-items: center;
     padding: 0 1rem 0 1rem;
     position: fixed;
+    display: flex;
+    align-items: center;
     top: 0;
     left: 0;
+}
+
+header a {
+    display: flex;
+    align-items: center;
 }
 
 header img {
@@ -52,9 +74,19 @@ main {
     padding-bottom: var(--spacing-bottom-mobile);
 }
 
-.map {
+.full-length-text {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.introduction, .legend {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.media {
     width: 100%;
-    height: auto;
+    height: 100%;
+    min-height: 40vh;
+    border: none;
 }
 
 nav {
@@ -70,27 +102,35 @@ nav {
     display: flex;
     align-items: center;
     position: fixed;
-    z-index: 9999;
     bottom: 0;
     left: 0;
 }
 
-nav a {
-    /* Layout */
+.nav-item {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-right: 1px var(--white) solid;
     height: 100%;
     width: 25%;
-
-    /* Design */
-    text-decoration: none;
-    color: var(--white);
 }
 
-.border {
-    border-right: 1px var(--white) solid;
+.active {
+    background-color: var(--lighter);
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item:hover {
+    background-color: var(--lighter);
+}
+
+.no-border {
+    border: none;
 }
 
 .nav-legend {
@@ -101,21 +141,27 @@ nav a {
     padding-left: 0.5rem;
 }
 
-.text {
-    padding: 0 1rem 0 1rem;
-}
-
-/* Popup for buildings */
-#popup{
+#popup {
     position: absolute;
     background-color: white;
     border: 1px solid gray;
-    padding: 15px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    padding: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     display: none;
     left: 2.5vw;
     width: 95vw;
     border-radius: 8px;
+}
+
+#popup .close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: #000;
 }
 
 #popup img {
@@ -132,50 +178,65 @@ nav a {
 
     main {
         display: grid;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: auto 1fr 1fr;
         grid-template-columns: 3fr 5fr;
-        padding: var(--spacing-top-desktop) 0 0 1rem;
+        grid-template-areas:
+            "fullsize-text fullsize-text"
+            "intro media"
+            "legend media";
+        column-gap: 1rem;
+        padding: var(--spacing-top-desktop) 0 var(--spacing-bottom-desktop) 1rem;
     }
 
-    nav {
-        flex-direction: column;
-        grid-column: 1;
-        grid-row: 2;
-        position: static;
-        bottom: auto;
-        left: auto;
-        width: auto;
-        height: auto;
-        box-shadow: none;
+    .full-length-text {
+        grid-area: fullsize-text;
+        padding-right: 1rem;
     }
 
-    nav a {
-        width: 100%;
-        text-align: left;
-        justify-content: left;
-        padding-left: 1rem;
+    .introduction {
+        grid-area: intro;
+        padding: 0;
     }
 
-    nav a:hover {
-        background-color: rgba(255, 255, 255, 0.25);
+    .media {
+        grid-area: media;
     }
 
     .legend {
-        grid-row: 2;
-        grid-column: 2;
+        grid-area: legend;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    nav {
+        margin-left: 1rem;
+        width: 40vw;
+    }
+
+    .introduction, .legend {
+        padding: 0;
+    }
+
+    .nav-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-item a {
+        flex-direction: column;
+        row-gap: 0.2rem;
     }
 
     .nav-legend {
         display: inline;
-        margin-left: 1rem;
     }
 
     .nav-temperature {
-        padding-left: 1rem;
+        padding-left: 0;
     }
 
-    .border {
-        border-right: none;
-        border-bottom: 1px #AEDCC0 solid;
+    #popup {
+        width: 40vw;
     }
 }

@@ -4,37 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="resources/icons/favicon.svg" type="image/png">
+    <link rel="stylesheet" href="svg.css">
+    <link rel="icon" href="resources/icons/favicon.svg" type="image/svg+xml">
     <title>CampusExplorer - Impressum</title>
+    <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
+    <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="vf1HTmKv7GDL5n" async></script>
     <script src="script.js" defer></script>
 </head>
 <body>
 <header>
-    <img src="resources/icons/favicon-white.svg" alt="Logo">
-    <h1>CampusExplorer</h1>
+    <a class="white-link" href="index.html">
+        <img src="resources/icons/favicon-white.svg" alt="Logo">
+        <h1>CampusExplorer</h1>
+    </a>
 </header>
 
 <main>
-    <section class="text introduction">
-        <h3>Title</h3>
-        <h5>Subheading</h5>
-        <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-            gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
-    </section>
+    <section class="full-length-text">
+        <h2>Impressum</h2>
 
-    <nav>
-        <a class="border" href="index.html"><img src="resources/icons/home.svg" alt="Home"><span class="nav-legend">Home</span></a>
-        <a class="border" id="weatherButton" href="#"><img src="resources/icons/weather/partly-cloudy.svg" alt="Weather"><span class="nav-temperature">18°C</span> </a>
-        <a class="border" href="#"><img src="resources/icons/imprint.svg" alt="Imprint"><span class="nav-legend">Impressum</span></a>
-        <a href="resources/never-gonna-give-you-up.mp4"><img src="resources/icons/question-mark.svg" alt="Easter Egg"><span class="nav-legend">Was ist das?!</span></a>
-    </nav>
+        <p>
+            Vincent Terzenbach<br>
+            Am Heuskamp 43<br>
+            31832 Springe
+        </p>
+
+        <h3>Kontakt</h3>
+        <p>
+            E-Mail: <a href="mailto:datenschutz@terzenbach.com">datenschutz@terzenbach.com</a>
+        </p>
+
+        <h3>Datenschutz</h3>
+        Unsere Datenschutzerklärung finden Sie <a href="privacy.html">hier</a>.
+
+    </section>
 </main>
+
+<nav>
+    <a href="index.html" class="nav-item white-link">
+        <img src="resources/icons/home.svg" alt="Home">
+        <span class="nav-legend">Home</span>
+    </a>
+
+    <a href="weather.html" id="weatherButton" class="nav-item white-link">
+        <img src="resources/icons/weather/partly-cloudy.svg" alt="Weather">
+        <span class="nav-temperature">&nbsp;</span>
+    </a>
+
+    <a href="imprint.html" class="nav-item active white-link">
+        <img src="resources/icons/imprint.svg" alt="Imprint">
+        <span class="nav-legend">Impressum</span>
+    </a>
+
+    <a href="easter-egg.html" class="nav-item no-border white-link">
+        <img src="resources/icons/question-mark.svg" alt="Easter Egg">
+        <span class="nav-legend">Bitte was?!</span>
+    </a>
+</nav>
 
 </body>
 </html>

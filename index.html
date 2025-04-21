@@ -5,32 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="svg.css">
-    <link rel="icon" href="resources/icons/favicon.svg" type="image/png">
+    <link rel="icon" href="resources/icons/favicon.svg" type="image/svg+xml">
     <title>CampusExplorer - Linden</title>
-    <script src="script.js" defer></script>
     <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
     <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="vf1HTmKv7GDL5n"
             async></script>
+    <script src="script.js" defer></script>
+
 </head>
 <body>
 <header>
-    <img src="resources/icons/favicon-white.svg" alt="Logo">
-    <h1>CampusExplorer</h1>
+    <a class="white-link" href="index.html">
+        <img src="resources/icons/favicon-white.svg" alt="Logo">
+        <h1>CampusExplorer</h1>
+    </a>
 </header>
 
 <main>
-    <section class="text introduction">
-        <h3>Entdecke den Campus Linden</h3>
+    <section class="introduction">
+        <h2>Entdecke den Campus Linden</h2>
         <h5>mit einem interaktiven Benutzererlebnis</h5>
         <p>
-            Mit dieser interaktiven Karte lässt sich der Campus "Linden", Heimat der Fakultäten I, II und IV, erkunden.
+            Mit dieser interaktiven Karte lässt sich der Campus Linden - Heimat der Fakultäten I, II und IV - erkunden.
             Entdecke die verschiedenen Gebäude, was sich darin verbirgt und lerne den Campus allgemein besser kennen und
-            finde
-            dich auf dem Campus zurecht.
+            finde Dich auf dem Campus zurecht.
+        </p>
+        <p>
+            Wenn Du mehr über ein Gebäude erfahren möchtest, dann klicke einfach auf das Gebäude. Ein Popup-Fenster
+            verrät dir dann alle weiteren Informationen. <em>Viel Spaß beim Erkunden!</em>
         </p>
     </section>
 
-    <svg class="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="2000" height="2000">
+    <svg class="media" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" width="2000" height="2000">
         <defs>
             <!-- Entrances -->
             <path id="triangle-up" d="M0 -10 l16.9 19 h-33.7 z" class="s7"/>
@@ -183,46 +189,55 @@
         </g>
     </svg>
 
-    <fieldset>
-        <legend>Legende</legend>
-        <p>
-            1A: Fak. I: Elektro- & Informationstechnik<br>
-            1B: Fak. I: Elektro- & Informationstechnik<br>
-            1C: Fak. I: Elektro- & Informationstechnik<br>
-            1D: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
-            1E: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
-            1F: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
-            1G: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
-            1H: Fak. IV: Wirtschaft & Informatik<br>
-            1I: Mensa
-            1J: Studierendenzentrum<br>
-            1K: Bibliothek
-        </p>
-    </fieldset>
-
-    <section class="text legend">
-
-    </section>
-    <nav>
-        <a class="border" href="index.html"><img src="resources/icons/home.svg" alt="Home"><span
-                class="nav-legend">Home</span></a>
-        <a class="border" href="weather.html" id="weatherButton"><img src="resources/icons/weather/partly-cloudy.svg"
-                                                                      alt="Weather"><span
-                class="nav-temperature">18°C</span> </a>
-        <a class="border" href="imprint.html"><img src="resources/icons/imprint.svg" alt="Imprint"><span
-                class="nav-legend">Impressum</span></a>
-        <a href="resources/never-gonna-give-you-up.mp4"><img src="resources/icons/question-mark.svg"
-                                                             alt="Easter Egg"><span
-                class="nav-legend">Was ist das?!</span></a>
-    </nav>
-
-    <!-- Popup element-->
-    <div id="popup">
-        <h1 id="nameDesGebäudes"></h1>
-        <p id="beschreibungDesGebäudes"></p>
-        <img src="" alt="Bild des Gebäudes" id="pictureDesGebäudes">
+    <div class="legend">
+        <fieldset>
+            <legend>Legende</legend>
+            <p>
+                1A: Fak. I: Elektro- & Informationstechnik<br>
+                1B: Fak. I: Elektro- & Informationstechnik<br>
+                1C: Fak. I: Elektro- & Informationstechnik<br>
+                1D: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
+                1E: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
+                1F: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
+                1G: Fak. II: Maschinenbau & Bioverfahrenstechnik<br>
+                1H: Fak. IV: Wirtschaft & Informatik<br>
+                1I: Mensa<br>
+                1J: Studierendenzentrum<br>
+                1K: Bibliothek
+            </p>
+        </fieldset>
     </div>
 </main>
+
+<nav>
+    <a href="index.html" class="nav-item active white-link">
+        <img src="resources/icons/home.svg" alt="Home">
+        <span class="nav-legend">Home</span>
+    </a>
+
+    <a href="weather.html" id="weatherButton" class="nav-item white-link">
+        <img src="resources/icons/weather/partly-cloudy.svg" alt="Weather">
+        <span class="nav-temperature">&nbsp;</span>
+    </a>
+
+    <a href="imprint.html" class="nav-item white-link">
+        <img src="resources/icons/imprint.svg" alt="Imprint">
+        <span class="nav-legend">Impressum</span>
+    </a>
+
+    <a href="easter-egg.html" class="nav-item white-link no-border">
+        <img src="resources/icons/question-mark.svg" alt="Easter Egg">
+        <span class="nav-legend">Bitte was?!</span>
+    </a>
+</nav>
+
+<!-- Popup element-->
+<div id="popup">
+    <button onclick="hide()" class="close-button">&times;</button>
+    <h1 id="nameDesGebäudes"></h1>
+    <p id="beschreibungDesGebäudes"></p>
+    <img src="" alt="Bild des Gebäudes" id="pictureDesGebäudes">
+</div>
 
 </body>
 </html>

@@ -20,7 +20,6 @@ class Building {
             this.show(event)
             event.stopPropagation();
         });
-        else console.warn(`Element with ID "${id}" not found!`);
     }
 
     /**
@@ -29,38 +28,93 @@ class Building {
      * @param {MouseEvent} event - Das Klick-Event, welches die Position des Cursors liefert.
      */
     show(event) {
-        const popup = document.getElementById("popup");
-
-        document.getElementById("nameDesGebäudes").textContent = this.name;
-        document.getElementById("beschreibungDesGebäudes").textContent = this.description;
-        document.getElementById("pictureDesGebäudes").src = this.picture;
-
-        /* Location of popup */
-        popup.style.top = event.pageY + 10 + "px";
-
-        /* Mobile view? */
+        const popup    = document.getElementById("popup");
+        const scrollX  = window.scrollX;
+        const scrollY  = window.scrollY;
+        const vw       = window.innerWidth;
+        const vh       = window.innerHeight;
         const isMobile = window.matchMedia("(max-width: 960px)").matches;
-        /* Position of popup near click */
-        if (!isMobile) {
-            popup.style.left = event.pageX + "px";
-        }
 
-        /* Show popup */
-        popup.style.display = "block";
+        // CSS‑Abstände einlesen
+        const rootStyle       = getComputedStyle(document.documentElement);
+        const topVhMobile     = parseFloat(rootStyle.getPropertyValue("--spacing-top-mobile"));
+        const bottomVhMobile  = parseFloat(rootStyle.getPropertyValue("--spacing-bottom-mobile"));
+        const topVhDesktop    = parseFloat(rootStyle.getPropertyValue("--spacing-top-desktop"));
+        const bottomVhDesktop = parseFloat(rootStyle.getPropertyValue("--spacing-bottom-desktop"));
+        const spacingTop      = vh * (isMobile ? topVhMobile    : topVhDesktop)    / 100;
+        const spacingBot      = vh * (isMobile ? bottomVhMobile : bottomVhDesktop) / 100;
+
+        // Inhalte setzen
+        document.getElementById("nameDesGebäudes").textContent        = this.name;
+        document.getElementById("beschreibungDesGebäudes").textContent = this.description;
+        document.getElementById("pictureDesGebäudes").src              = this.picture;
+
+        // Zum Messen kurz unsichtbar anzeigen
+        popup.style.visibility = "hidden";
+        popup.style.display    = "block";
+        const popupW = popup.offsetWidth;
+        const popupH = popup.offsetHeight;
+
+        // ─── Horizontal nur Desktop ─────────────────────────────────────────
+        if (!isMobile) {
+            let left = event.pageX;
+            const viewportMaxX = scrollX + vw;
+            // Rechts-Overflow?
+            if (left + popupW > viewportMaxX) {
+                left = event.pageX - popupW - 10;
+            }
+            // Clamp in Dokument-Koordinaten
+            left = Math.min(
+                Math.max(left, scrollX + 10),
+                viewportMaxX - popupW - 10
+            );
+            popup.style.left = left + "px";
+        }
+        // Mobil: kein JS-Left, CSS übernimmt
+
+        // ─── Vertikal (Desktop + Mobile) ───────────────────────────────────────
+        let top;
+        if (!isMobile) {
+            // Desktop: mit Header/Footer‑Clamp
+            const viewportMaxY = scrollY + vh;
+            top = event.pageY + 10;
+            if (top + popupH > viewportMaxY - spacingBot) {
+                top = event.pageY - popupH - 10;
+            }
+            const minY = scrollY + spacingTop;
+            const maxY = viewportMaxY - spacingBot - popupH;
+            top = Math.min(Math.max(top, minY), maxY);
+        } else {
+            // Mobile: immer nach unten öffnen (Overflow erlaubt)
+            top = event.pageY + 10;
+        }
+        popup.style.top = top + "px";
+
+        // Sichtbar machen
+        popup.style.visibility = "visible";
+        popup.style.display    = "block";
+    }
+}
+
+function hide() {
+    const popup    = document.getElementById("popup");
+    if (popup) {
+        popup.style.visibility = "hidden";
+        popup.style.display = "none";
     }
 }
 
 document.addEventListener("click", (event) => {
     const popup = document.getElementById("popup");
     // Prüfe, ob der Klick NICHT im Popup und NICHT auf dem Button stattgefunden hat
-    if (popup.style.display === "block" &&
+    if (popup && popup.style.display === "block" &&
         !popup.contains(event.target) &&
         event.target.id !== "popupButton") {
         popup.style.display = "none";
     }
 });
 
-// TODO: Fix this
+// TODO: Fix this later
 new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-a.jpg");
 new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-b.jpg");
 new Building("1C", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-c.jpg");
@@ -70,8 +124,8 @@ new Building("1F", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahren
 new Building("1G", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-g.jpg");
 new Building("1H", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resources/buildings/building-h.jpg");
 new Building("1I", "I-Gebäude", "Mensa – Campus Linden", "resources/buildings/building-i.jpg");
-new Building("1J", "J-Gebäude", "Verwaltung und Lehrräume", "resources/buildings/building-j.jpg");
-new Building("1K", "K-Gebäude", "Studierendenzentrum", "resources/buildings/building-k.jpg");
+new Building("1J", "J-Gebäude", "Studierendenzentrum", "resources/buildings/building-j.jpg");
+new Building("1K", "K-Gebäude", "Die Zentral-Bibliothek der Hochschule Hannover", "resources/buildings/building-k.jpg");
 
 
 /**
@@ -101,6 +155,7 @@ async function fetchWeather() {
         temp = current.temp_C;
         windSpeed = current.windspeedKmph;
         weather = current.weatherDesc[0].value;
+        console.log("Weather description from API: " + weather)
         // deutschWetter = current.lang_de[0].value; alternativ wenn der Webserver nicht funktioniert
 
         todayWeather = data.weather[0];
@@ -169,11 +224,11 @@ function updateWeatherIcon(weather, temp) {
 async function showWeather(temp, windSpeed, maxTemp, minTemp, weather, deutschWetter) {
     // Übersetze die Wetterbeschreibung ins Deutsche
     weather = await translate(weather);
-    document.getElementById("temp").textContent = "Aktuelle Temperatur: " + temp;
-    document.getElementById("windSpeed").textContent = "Windgeschwindigkeit: " + windSpeed;
-    document.getElementById("maxTemp").textContent = "Höchsttemperatur: " + maxTemp;
-    document.getElementById("minTemp").textContent = "Minimale Temperatur: " + minTemp;
-    document.getElementById("weather").textContent = "Wetter: " + weather;
+    document.getElementById("temp").innerHTML = temp;
+    document.getElementById("windSpeed").innerHTML = windSpeed;
+    document.getElementById("maxTemp").innerHTML = maxTemp;
+    document.getElementById("minTemp").innerHTML = minTemp;
+    document.getElementById("weather").innerHTML = weather;
 }
 
 /**
@@ -183,11 +238,11 @@ async function showWeather(temp, windSpeed, maxTemp, minTemp, weather, deutschWe
  * @returns {Promise<string>} - Die übersetzte Wetterbeschreibung oder eine Fehlermeldung.
  */
 async function translate(weather) {
-    console.log(weather);
+    console.log("Before translation: " + weather);
     let antwort = "Übersetzung gescheitert";
     try {
         // Sende einen POST-Request an den Übersetzungsservice
-        let response = await fetch("http://terzenbach.com:5000/translate", {
+        let response = await fetch("https://terzenbach.com/translate", {
             method: "POST",
             body: JSON.stringify({
                 q:  weather.toLowerCase(),
@@ -201,10 +256,17 @@ async function translate(weather) {
         });
         let data = await response.json();
         antwort = data.translatedText;
-        console.log(data);
-        console.log(data.translatedText);
+        console.log("After translation" + data.translatedText);
     } catch (e) {
         console.error('Error calling "translate.com" API:', e);
     }
     return antwort;
 }
+
+/* Mail für Impressum */
+const user = "datenschutz";
+const domain = "terzenbach.com";
+const email = `${user}@${domain}`;
+
+const span = document.getElementById("email");
+if (span) span.innerHTML = `<a href="mailto:${email}">${email}</a>`;
