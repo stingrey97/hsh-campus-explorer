@@ -139,7 +139,6 @@ async function fetchWeather() {
     let minTemp;
     let current;
     let todayWeather;
-    let deutschWetter;
     try {
         let response = await fetch('https://wttr.in/Hannover?format=j1');
         let data = await response.json();
@@ -158,7 +157,7 @@ async function fetchWeather() {
 
         updateWeatherIcon(weather, temp);
         if (window.location.pathname.includes("weather")) {
-            showWeather(temp, windSpeed, maxTemp, minTemp, weather, deutschWetter);
+            showWeather(temp, windSpeed, maxTemp, minTemp, weather);
         }
     } catch (e) {
         console.error('Error calling "wttr.in" API:', e);
@@ -213,9 +212,8 @@ function updateWeatherIcon(weather, temp) {
  * @param {string} maxTemp - Die Höchsttemperatur des Tages.
  * @param {string} minTemp - Die minimale Temperatur des Tages.
  * @param {string} weather - Die Wetterbeschreibung in Englisch.
- * @param {string} deutschWetter - (Optional) Direkte deutsche Wetterbeschreibung, falls verfügbar.
  */
-async function showWeather(temp, windSpeed, maxTemp, minTemp, weather, deutschWetter) {
+async function showWeather(temp, windSpeed, maxTemp, minTemp, weather) {
     // Übersetze die Wetterbeschreibung ins Deutsche
     weather = await translate(weather);
     document.getElementById("temp").innerHTML = temp;
