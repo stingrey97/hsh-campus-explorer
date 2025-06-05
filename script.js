@@ -108,7 +108,6 @@ document.addEventListener("click", (_) => {
     hide()
 });
 
-// TODO: Fix this later
 new Building("1A", "A-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-a.jpg");
 new Building("1B", "B-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-b.jpg");
 new Building("1C", "C-Gebäude", "Fakultät I – Elektro- und Informationstechnik", "resources/buildings/building-c.jpg");
@@ -116,8 +115,8 @@ new Building("1D", "D-Gebäude", "Fakultät II – Maschinenbau und Bioverfahren
 new Building("1E", "E-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-e.jpg");
 new Building("1F", "F-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-f.jpg");
 new Building("1G", "G-Gebäude", "Fakultät II – Maschinenbau und Bioverfahrenstechnik", "resources/buildings/building-g.jpg");
-new Building("1H", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik", "resources/buildings/building-h.jpg");
-new Building("1I", "I-Gebäude", "Mensa – Campus Linden", "resources/buildings/building-i.jpg");
+new Building("1H", "H-Gebäude", "Fakultät IV – Wirtschaft und Informatik (Das beste Gebäude)", "resources/buildings/building-h.jpg");
+new Building("1I", "I-Gebäude", "Mensa – Campus Linden   (Öffnungszeiten: Mo-Fr 11:00 - 14:30)", "resources/buildings/building-i.jpg");
 new Building("1J", "J-Gebäude", "Studierendenzentrum", "resources/buildings/building-j.jpg");
 new Building("1K", "K-Gebäude", "Die Zentral-Bibliothek der Hochschule Hannover", "resources/buildings/building-k.jpg");
 
