@@ -261,4 +261,9 @@ const domain = "terzenbach.com";
 const email = `${user}@${domain}`;
 
 const span = document.getElementById("email");
-if (span) span.innerHTML = `<a href="mailto:${email}">${email}</a>`;
+if (span) {
+    const link = document.createElement("a");
+    link.href = `mailto:${email}`;
+    link.innerHTML = email;
+    span.appendChild(link);
+}
