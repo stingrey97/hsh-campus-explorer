@@ -170,6 +170,10 @@ nav {
     margin-top: 10px;
 }
 
+.quote {
+    font-style: italic;
+}
+
 /* Desktop Layout (>960 px) */
 @media (min-width: 960px) {
     header {
