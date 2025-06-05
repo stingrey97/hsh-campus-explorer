@@ -16,23 +16,26 @@
 
 * {
     font-family: "Segoe UI", sans-serif;
-    box-sizing: border-box;
+    box-sizing: border-box;    /* Berechnung der Grüße von Elementen inkl. Padding und Border */
 }
 
 a {
     color: var(--darker);
 }
 
+/* Default Padding und Margin entfernen - Ganzen Viewport Rahmenlos nutzen */
 html, body {
     margin: 0;
     padding: 0;
 }
 
+/* Helle, designte Links für dunkle Hintergründe */
 .white-link {
     text-decoration: none;
     color: var(--white);
 }
 
+/* Individuelle Abstand unter Überschriften */
 h2 {
     margin-bottom: 0.5rem;
 }
@@ -45,19 +48,19 @@ header {
     /* Colors */
     background-color: var(--dark);
     color: var(--white);
+
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 9000;
+
     /* Size */
     width: 100vw;
     height: var(--spacing-top-mobile);
 
     /* Layout */
+    z-index: 9000;
     padding: 0 1rem 0 1rem;
     position: fixed;
     display: flex;
     align-items: center;
-    top: 0;
-    left: 0;
 }
 
 header a {
