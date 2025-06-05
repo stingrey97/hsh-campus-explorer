@@ -35,27 +35,27 @@ class Building {
         const vh       = window.innerHeight;
         const isMobile = window.matchMedia("(max-width: 960px)").matches;
 
-        // CSS‑Abstände einlesen
-        const rootStyle       = getComputedStyle(document.documentElement);
-        const topVhMobile     = parseFloat(rootStyle.getPropertyValue("--spacing-top-mobile"));
-        const bottomVhMobile  = parseFloat(rootStyle.getPropertyValue("--spacing-bottom-mobile"));
-        const topVhDesktop    = parseFloat(rootStyle.getPropertyValue("--spacing-top-desktop"));
-        const bottomVhDesktop = parseFloat(rootStyle.getPropertyValue("--spacing-bottom-desktop"));
-        const spacingTop      = vh * (isMobile ? topVhMobile    : topVhDesktop)    / 100;
-        const spacingBot      = vh * (isMobile ? bottomVhMobile : bottomVhDesktop) / 100;
+        // CSS‑Abstände einlesen, um Abstände zu berechnen, wo Popup angezeigt wird
+        const rootStyle = getComputedStyle(document.documentElement);
+        const topVhMobile        = parseFloat(rootStyle.getPropertyValue("--spacing-top-mobile"));
+        const bottomVhMobile     = parseFloat(rootStyle.getPropertyValue("--spacing-bottom-mobile"));
+        const topVhDesktop       = parseFloat(rootStyle.getPropertyValue("--spacing-top-desktop"));
+        const bottomVhDesktop    = parseFloat(rootStyle.getPropertyValue("--spacing-bottom-desktop"));
+        const spacingTop         = vh * (isMobile ? topVhMobile    : topVhDesktop)    / 100;
+        const spacingBot         = vh * (isMobile ? bottomVhMobile : bottomVhDesktop) / 100;
 
         // Inhalte setzen
-        document.getElementById("nameDesGebäudes").textContent        = this.name;
+        document.getElementById("nameDesGebäudes").textContent         = this.name;
         document.getElementById("beschreibungDesGebäudes").textContent = this.description;
         document.getElementById("pictureDesGebäudes").src              = this.picture;
 
         // Zum Messen kurz unsichtbar anzeigen
         popup.style.visibility = "hidden";
         popup.style.display    = "block";
-        const popupW = popup.offsetWidth;
-        const popupH = popup.offsetHeight;
+        const popupW  = popup.offsetWidth;
+        const popupH  = popup.offsetHeight;
 
-        // ─── Horizontal nur Desktop ─────────────────────────────────────────
+        // Horizontal nur Desktop
         if (!isMobile) {
             let left = event.pageX;
             const viewportMaxX = scrollX + vw;
@@ -72,7 +72,7 @@ class Building {
         }
         // Mobil: kein JS-Left, CSS übernimmt
 
-        // ─── Vertikal (Desktop + Mobile) ───────────────────────────────────────
+        // Vertikal (Desktop + Mobile)
         let top;
         if (!isMobile) {
             // Desktop: mit Header/Footer‑Clamp
@@ -104,14 +104,8 @@ function hide() {
     }
 }
 
-document.addEventListener("click", (event) => {
-    const popup = document.getElementById("popup");
-    // Prüfe, ob der Klick NICHT im Popup und NICHT auf dem Button stattgefunden hat
-    if (popup && popup.style.display === "block" &&
-        !popup.contains(event.target) &&
-        event.target.id !== "popupButton") {
-        popup.style.display = "none";
-    }
+document.addEventListener("click", (_) => {
+    hide()
 });
 
 // TODO: Fix this later
